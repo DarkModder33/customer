@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Jersey Girl's Public Adjusting LLC - Heather Barile, Licensed NJ Public Adjuster in Vineland. Free claim inspections & consultations. We fight for your full settlement.">
     <title>Jersey Girl's Public Adjusting LLC | Heather Barile • Vineland, NJ</title>
     
@@ -11,129 +11,156 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        :root {
+            --font-size-base: clamp(1rem, 3.5vw + 0.5rem, 1.125rem);
+            --font-size-h1: clamp(2.5rem, 8vw + 1rem, 4.5rem);
+            --font-size-h2: clamp(2rem, 6vw + 0.5rem, 3rem);
+        }
+        body { 
+            font-family: 'Inter', system-ui, sans-serif; 
+            font-size: var(--font-size-base);
+            scroll-behavior: smooth;
+        }
         .heading { font-family: 'Playfair Display', serif; }
         .hero-bg {
             background: linear-gradient(rgba(6,95,70,0.85), rgba(6,95,70,0.85)),
                         url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat fixed;
+            min-height: 80vh;
         }
-        .card-hover { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 15px 20px -8px rgba(0,0,0,0.12); }
         .testimonial-slide { display: none; }
-        .testimonial-slide.active { display: block; animation: fadeIn 0.8s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .testimonial-slide.active { display: block; }
+        .burger { display: none; }
+        @media (max-width: 768px) {
+            .burger { display: block; font-size: 1.8rem; cursor: pointer; }
+            .nav-links { display: none; flex-direction: column; gap: 1.5rem; background: white; position: absolute; top: 100%; left: 0; right: 0; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .hero-bg { min-height: 70vh; padding-top: 5rem; }
+            .calendly-inline-widget { height: 600px !important; } /* Reduced for mobile */
+            section { padding: 3rem 1rem; }
+        }
+        @media (max-width: 480px) {
+            .calendly-inline-widget { height: 550px !important; }
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800">
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR (with mobile toggle) -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <span class="text-emerald-800 text-3xl font-bold tracking-tighter heading">Jersey Girl's</span>
-                <span class="text-xs font-medium text-emerald-700 tracking-widest">PUBLIC ADJUSTING LLC</span>
+                <span class="text-emerald-800 text-2xl sm:text-3xl font-bold heading">Jersey Girl's</span>
+                <span class="text-xs font-medium text-emerald-700 tracking-widest hidden sm:block">PUBLIC ADJUSTING LLC</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
+            <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium">
                 <a href="#services" class="hover:text-emerald-700">Services</a>
                 <a href="#process" class="hover:text-emerald-700">Process</a>
                 <a href="#heather" class="hover:text-emerald-700">About</a>
                 <a href="#areas" class="hover:text-emerald-700">Areas</a>
                 <a href="#book" class="hover:text-emerald-700">Book Now</a>
             </div>
-            <a href="tel:8565286726" class="bg-emerald-800 text-white px-6 py-3 rounded-3xl font-semibold flex items-center gap-2 hover:bg-emerald-900 transition">
-                <i class="fas fa-phone"></i> (856) 528-6726
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="tel:8565286726" class="hidden sm:flex bg-emerald-800 text-white px-5 py-2.5 rounded-2xl font-semibold hover:bg-emerald-900 transition text-sm">
+                    <i class="fas fa-phone mr-2"></i> (856) 528-6726
+                </a>
+                <button class="burger md:hidden text-3xl text-emerald-800" aria-label="Toggle menu">☰</button>
+            </div>
+        </div>
+        <div class="nav-links md:hidden">
+            <a href="#services" class="block py-3 px-6 hover:bg-stone-100">Services</a>
+            <a href="#process" class="block py-3 px-6 hover:bg-stone-100">Process</a>
+            <a href="#heather" class="block py-3 px-6 hover:bg-stone-100">About</a>
+            <a href="#areas" class="block py-3 px-6 hover:bg-stone-100">Areas</a>
+            <a href="#book" class="block py-3 px-6 hover:bg-stone-100">Book Now</a>
+            <a href="tel:8565286726" class="block py-4 px-6 bg-emerald-800 text-white text-center font-semibold mt-2">Call (856) 528-6726</a>
         </div>
     </nav>
 
-    <!-- HERO - LANDING PAGE FOCAL POINT -->
-    <section class="hero-bg h-screen flex items-center text-white">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <p class="uppercase text-amber-200 tracking-widest text-sm font-medium mb-4">South Jersey • Independent • Woman-Owned</p>
-            <h1 class="heading text-6xl md:text-7xl font-bold leading-none">Your Personal Advocate.<br>Your Dedicated Fighter.</h1>
-            <p class="mt-8 text-xl max-w-3xl mx-auto">Heather Barile personally handles every claim — no call centers, no hand-offs. Free inspections. No upfront fees.</p>
-            <div class="mt-12 flex flex-wrap justify-center gap-6">
-                <a href="#book" class="bg-white text-emerald-900 px-10 py-5 rounded-3xl text-lg font-semibold hover:bg-amber-50 transition shadow-xl">Book Free Consultation</a>
-                <a href="tel:8565286726" class="border-2 border-white px-10 py-5 rounded-3xl text-lg font-semibold hover:bg-white/10 transition">Call Heather Now</a>
+    <!-- HERO -->
+    <section class="hero-bg flex items-center text-white">
+        <div class="max-w-5xl mx-auto px-5 sm:px-6 py-16 text-center">
+            <p class="uppercase text-amber-200 tracking-widest text-sm sm:text-base font-medium mb-4">South Jersey • Independent • Woman-Owned</p>
+            <h1 class="heading text-[var(--font-size-h1)] leading-tight font-bold">Your Personal Advocate.<br>Your Dedicated Fighter.</h1>
+            <p class="mt-6 text-lg sm:text-xl max-w-3xl mx-auto">Heather Barile personally handles every claim — no call centers, no hand-offs. Free inspections. No upfront fees.</p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-5">
+                <a href="#book" class="bg-white text-emerald-900 px-8 py-4 rounded-3xl text-base sm:text-lg font-semibold hover:bg-amber-50 transition shadow-lg">Book Free Consultation</a>
+                <a href="tel:8565286726" class="border-2 border-white px-8 py-4 rounded-3xl text-base sm:text-lg font-semibold hover:bg-white/10 transition">Call Now</a>
             </div>
         </div>
     </section>
 
     <!-- TRUST BAR -->
-    <div class="bg-white py-7 border-b">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-6 text-center text-sm font-medium text-slate-600">
+    <div class="bg-white py-6 border-b">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-2 sm:grid-cols-5 gap-4 text-center text-xs sm:text-sm font-medium text-slate-600">
             <div>✅ Licensed & Bonded NJ</div>
             <div>👩‍💼 Woman-Owned</div>
             <div>🔍 Free Inspections</div>
             <div>💰 $0 Upfront</div>
-            <div>🏠 Vineland Local</div>
+            <div class="col-span-2 sm:col-span-1">🏠 Vineland Local</div>
         </div>
     </div>
 
     <!-- SERVICES -->
-    <section id="services" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="heading text-5xl text-center mb-12 text-emerald-800">Claim Types We Handle</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-stone-50 p-8 rounded-3xl card-hover"><strong>Water & Flood</strong><p class="mt-3 text-slate-600">Burst pipes, leaks, storms</p></div>
-                <div class="bg-stone-50 p-8 rounded-3xl card-hover"><strong>Fire & Smoke</strong><p class="mt-3 text-slate-600">Structure, contents, soot</p></div>
-                <div class="bg-stone-50 p-8 rounded-3xl card-hover"><strong>Wind & Hail</strong><p class="mt-3 text-slate-600">Roof, siding, structural</p></div>
-                <div class="bg-stone-50 p-8 rounded-3xl card-hover"><strong>Mold (Covered)</strong><p class="mt-3 text-slate-600">From covered events</p></div>
-                <div class="bg-stone-50 p-8 rounded-3xl card-hover"><strong>Business Interruption</strong><p class="mt-3 text-slate-600">Income loss claims</p></div>
-                <div class="bg-stone-50 p-8 rounded-3xl card-hover"><strong>Other Perils</strong><p class="mt-3 text-slate-600">Vandalism, theft, collapse</p></div>
+    <section id="services" class="py-16 sm:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 class="heading text-[var(--font-size-h2)] text-center mb-10 text-emerald-800">Claim Types We Handle</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-stone-50 p-6 sm:p-8 rounded-3xl card-hover"><strong>Water & Flood</strong><p class="mt-3 text-slate-600 text-sm sm:text-base">Burst pipes, leaks, storms</p></div>
+                <div class="bg-stone-50 p-6 sm:p-8 rounded-3xl card-hover"><strong>Fire & Smoke</strong><p class="mt-3 text-slate-600 text-sm sm:text-base">Structure, contents, soot</p></div>
+                <div class="bg-stone-50 p-6 sm:p-8 rounded-3xl card-hover"><strong>Wind & Hail</strong><p class="mt-3 text-slate-600 text-sm sm:text-base">Roof, siding, structural</p></div>
+                <div class="bg-stone-50 p-6 sm:p-8 rounded-3xl card-hover"><strong>Mold (Covered)</strong><p class="mt-3 text-slate-600 text-sm sm:text-base">From covered events</p></div>
+                <div class="bg-stone-50 p-6 sm:p-8 rounded-3xl card-hover"><strong>Business Interruption</strong><p class="mt-3 text-slate-600 text-sm sm:text-base">Income loss claims</p></div>
+                <div class="bg-stone-50 p-6 sm:p-8 rounded-3xl card-hover"><strong>Other Perils</strong><p class="mt-3 text-slate-600 text-sm sm:text-base">Vandalism, theft, collapse</p></div>
             </div>
         </div>
     </section>
 
     <!-- PROCESS -->
-    <section id="process" class="py-20 bg-stone-100">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="heading text-5xl text-center mb-12 text-emerald-800">Our 5-Step Process</h2>
-            <div class="grid md:grid-cols-5 gap-8 text-center">
-                <div><div class="w-12 h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-xl font-bold">1</div><p class="mt-4 font-medium">Free Inspection</p></div>
-                <div><div class="w-12 h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-xl font-bold">2</div><p class="mt-4 font-medium">Documentation</p></div>
-                <div><div class="w-12 h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-xl font-bold">3</div><p class="mt-4 font-medium">Estimate</p></div>
-                <div><div class="w-12 h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-xl font-bold">4</div><p class="mt-4 font-medium">Negotiation</p></div>
-                <div><div class="w-12 h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-xl font-bold">5</div><p class="mt-4 font-medium">Settlement</p></div>
+    <section id="process" class="py-16 sm:py-20 bg-stone-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <h2 class="heading text-[var(--font-size-h2)] text-center mb-10 text-emerald-800">Our 5-Step Process</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
+                <div><div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-lg sm:text-xl font-bold">1</div><p class="mt-3 text-sm sm:text-base font-medium">Free Inspection</p></div>
+                <div><div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-lg sm:text-xl font-bold">2</div><p class="mt-3 text-sm sm:text-base font-medium">Documentation</p></div>
+                <div><div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-lg sm:text-xl font-bold">3</div><p class="mt-3 text-sm sm:text-base font-medium">Estimate</p></div>
+                <div><div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-lg sm:text-xl font-bold">4</div><p class="mt-3 text-sm sm:text-base font-medium">Negotiation</p></div>
+                <div class="col-span-2 sm:col-span-1"><div class="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-800 text-white rounded-full flex items-center justify-center mx-auto text-lg sm:text-xl font-bold">5</div><p class="mt-3 text-sm sm:text-base font-medium">Settlement</p></div>
             </div>
         </div>
     </section>
 
     <!-- ABOUT HEATHER -->
-    <section id="heather" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <section id="heather" class="py-16 sm:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div>
-                <h2 class="heading text-5xl text-emerald-800 mb-8">Meet Heather Barile</h2>
-                <p class="text-lg text-slate-600 leading-relaxed">Licensed NJ Public Adjuster and proud owner. Rutgers-educated, South Jersey raised. I personally manage every claim from inspection to final settlement — direct access, no hand-offs, always fighting for you.</p>
+                <h2 class="heading text-[var(--font-size-h2)] text-emerald-800 mb-6">Meet Heather Barile</h2>
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed">Licensed NJ Public Adjuster and proud owner. Rutgers-educated, South Jersey raised. I personally manage every claim from inspection to final settlement — direct access, no hand-offs, always fighting for you.</p>
             </div>
-            <div class="bg-stone-100 rounded-3xl aspect-square flex items-center justify-center text-9xl">👩‍💼</div>
+            <div class="bg-stone-100 rounded-3xl aspect-square flex items-center justify-center text-8xl sm:text-9xl">👩‍💼</div>
         </div>
     </section>
 
-    <!-- BOOKING SECTION - CALENDLY INLINE -->
-    <section id="book" class="py-20 bg-white border-t border-stone-200">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="heading text-5xl text-emerald-800 mb-6">Book Your Free Consultation</h2>
-            <p class="text-xl text-slate-600 mb-10">Pick a time that works — Heather will personally review your claim. No cost, no obligation.</p>
+    <!-- BOOKING - CALENDLY -->
+    <section id="book" class="py-16 sm:py-20 bg-white border-t border-stone-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="heading text-[var(--font-size-h2)] text-emerald-800 mb-6">Book Your Free Consultation</h2>
+            <p class="text-base sm:text-lg text-slate-600 mb-8 max-w-3xl mx-auto">Pick a time that works — Heather will personally review your claim. No cost, no obligation.</p>
             <div class="calendly-inline-widget mx-auto" data-url="https://calendly.com/jerseygirlspublicadjuster/new-meeting?hide_event_type_details=1" style="min-width:320px;height:700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
     </section>
 
     <!-- SERVICE AREAS + MAP -->
-    <section id="areas" class="py-20 bg-stone-50">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="heading text-5xl text-center text-emerald-800 mb-10">South Jersey Service Areas</h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+    <section id="areas" class="py-16 sm:py-20 bg-stone-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 class="heading text-[var(--font-size-h2)] text-center text-emerald-800 mb-8">South Jersey Service Areas</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <p class="text-lg mb-6">Serving all of South Jersey from Vineland:</p>
-                    <ul class="grid grid-cols-2 gap-3 text-slate-600">
-                        <li>Cumberland County</li>
-                        <li>Atlantic County</li>
-                        <li>Cape May County</li>
-                        <li>Salem County</li>
-                        <li>Gloucester County</li>
-                        <li>Camden County</li>
+                    <p class="text-base sm:text-lg mb-6">Serving all of South Jersey from Vineland:</p>
+                    <ul class="grid grid-cols-2 gap-3 text-slate-600 text-sm sm:text-base">
+                        <li>Cumberland County</li><li>Atlantic County</li><li>Cape May County</li><li>Salem County</li><li>Gloucester County</li><li>Camden County</li>
                     </ul>
                 </div>
                 <div class="rounded-3xl overflow-hidden shadow-xl">
@@ -143,89 +170,96 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS CAROUSEL -->
-    <section class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="heading text-5xl text-emerald-800 mb-12">What Clients Say</h2>
-            <div id="testimonialCarousel">
-                <div class="testimonial-slide active bg-stone-50 p-10 rounded-3xl shadow-lg">
-                    <p class="italic text-lg">"Heather fought hard and got me thousands more than the insurance offer. Highly recommend!"</p>
-                    <p class="mt-6 font-semibold">— Michael T., Vineland</p>
+    <!-- TESTIMONIALS -->
+    <section class="py-16 sm:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="heading text-[var(--font-size-h2)] text-emerald-800 mb-10">What Clients Say</h2>
+            <div id="testimonialCarousel" class="space-y-8">
+                <div class="testimonial-slide active bg-stone-50 p-6 sm:p-10 rounded-3xl shadow-lg">
+                    <p class="italic text-base sm:text-lg">"Heather fought hard and got me thousands more than the insurance offer. Highly recommend!"</p>
+                    <p class="mt-6 font-semibold text-sm sm:text-base">— Michael T., Vineland</p>
                 </div>
-                <div class="testimonial-slide bg-stone-50 p-10 rounded-3xl shadow-lg">
-                    <p class="italic text-lg">"Fast, caring, and professional. Finally got the settlement I deserved."</p>
-                    <p class="mt-6 font-semibold">— Lisa R., Millville</p>
+                <div class="testimonial-slide bg-stone-50 p-6 sm:p-10 rounded-3xl shadow-lg">
+                    <p class="italic text-base sm:text-lg">"Fast, caring, and professional. Finally got the settlement I deserved."</p>
+                    <p class="mt-6 font-semibold text-sm sm:text-base">— Lisa R., Millville</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ ACCORDION -->
-    <section class="py-20 bg-stone-100">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="heading text-5xl text-center mb-12">Frequently Asked Questions</h2>
+    <!-- FAQ -->
+    <section class="py-16 sm:py-20 bg-stone-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <h2 class="heading text-[var(--font-size-h2)] text-center mb-10">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <details class="bg-white rounded-3xl p-6 shadow-sm">
-                    <summary class="font-semibold cursor-pointer">How much does it cost?</summary>
-                    <p class="mt-4 text-slate-600">Nothing upfront. We only get paid a percentage of what we recover for you.</p>
+                <details class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm">
+                    <summary class="font-semibold cursor-pointer text-base sm:text-lg">How much does it cost?</summary>
+                    <p class="mt-4 text-slate-600 text-sm sm:text-base">Nothing upfront. We only get paid a percentage of what we recover for you.</p>
                 </details>
-                <details class="bg-white rounded-3xl p-6 shadow-sm">
-                    <summary class="font-semibold cursor-pointer">Do you offer free inspections?</summary>
-                    <p class="mt-4 text-slate-600">Yes — completely free property inspections to document all damage.</p>
+                <details class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm">
+                    <summary class="font-semibold cursor-pointer text-base sm:text-lg">Do you offer free inspections?</summary>
+                    <p class="mt-4 text-slate-600 text-sm sm:text-base">Yes — completely free property inspections to document all damage.</p>
                 </details>
-                <details class="bg-white rounded-3xl p-6 shadow-sm">
-                    <summary class="font-semibold cursor-pointer">What areas do you serve?</summary>
-                    <p class="mt-4 text-slate-600">All of South Jersey, based in Vineland.</p>
+                <details class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm">
+                    <summary class="font-semibold cursor-pointer text-base sm:text-lg">What areas do you serve?</summary>
+                    <p class="mt-4 text-slate-600 text-sm sm:text-base">All of South Jersey, based in Vineland.</p>
                 </details>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT FORM -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="heading text-5xl text-center mb-12 text-emerald-800">Or Submit for Free Review</h2>
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="grid md:grid-cols-2 gap-6 bg-stone-50 p-10 rounded-3xl shadow-lg">
-                <input type="text" name="name" placeholder="Your Name" required class="border rounded-2xl px-6 py-4 focus:outline-none focus:border-emerald-700">
-                <input type="tel" name="phone" placeholder="Phone" required class="border rounded-2xl px-6 py-4 focus:outline-none focus:border-emerald-700">
-                <input type="email" name="email" placeholder="Email" required class="border rounded-2xl px-6 py-4 focus:outline-none focus:border-emerald-700 md:col-span-2">
-                <textarea name="message" rows="5" placeholder="Tell us about your claim..." class="md:col-span-2 border rounded-3xl px-6 py-4 focus:outline-none focus:border-emerald-700"></textarea>
-                <button type="submit" class="md:col-span-2 bg-emerald-800 text-white py-6 rounded-3xl text-xl font-semibold hover:bg-emerald-900">Submit →</button>
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 sm:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <h2 class="heading text-[var(--font-size-h2)] text-center mb-10 text-emerald-800">Or Submit for Free Review</h2>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="grid gap-5 bg-stone-50 p-6 sm:p-10 rounded-3xl shadow-lg">
+                <input type="text" name="name" placeholder="Your Name" required class="border rounded-2xl px-5 py-4 text-base focus:outline-none focus:border-emerald-700">
+                <input type="tel" name="phone" placeholder="Phone Number" required class="border rounded-2xl px-5 py-4 text-base focus:outline-none focus:border-emerald-700">
+                <input type="email" name="email" placeholder="Email Address" required class="border rounded-2xl px-5 py-4 text-base focus:outline-none focus:border-emerald-700">
+                <textarea name="message" rows="5" placeholder="Tell us about your claim..." class="border rounded-3xl px-5 py-4 text-base focus:outline-none focus:border-emerald-700"></textarea>
+                <button type="submit" class="bg-emerald-800 text-white py-5 rounded-3xl text-lg font-semibold hover:bg-emerald-900 transition">Submit →</button>
             </form>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-white py-12 text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <p class="text-2xl heading mb-4">Jersey Girl's Public Adjusting LLC</p>
+    <footer class="bg-slate-900 text-white py-10 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <p class="text-xl heading mb-3">Jersey Girl's Public Adjusting LLC</p>
             <p>901 E Elmer Road • Vineland, NJ 08360</p>
-            <p class="mt-2">(856) 528-6726 • Heather Barile, Owner</p>
-            <p class="text-sm mt-8 text-slate-400">© 2026 • Independent NJ Licensed Public Adjuster</p>
+            <p class="mt-1">(856) 528-6726 • Heather Barile, Owner</p>
+            <p class="mt-6 text-slate-400">© 2026 • Independent NJ Licensed Public Adjuster</p>
         </div>
     </footer>
 
     <!-- FLOATING CALL BUTTON -->
-    <a href="tel:8565286726" class="fixed bottom-8 right-8 bg-emerald-800 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-emerald-900 z-50 text-2xl">
+    <a href="tel:8565286726" class="fixed bottom-6 right-6 bg-emerald-800 text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-emerald-900 z-50 text-2xl">
         <i class="fas fa-phone"></i>
     </a>
 
-    <!-- Chatbase Widget -->
+    <!-- Chatbase -->
     <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="NAZ9TRG3hwywidlXD2UMf";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
 
-    <!-- Simple Carousel Auto-Rotate -->
+    <!-- Mobile Menu Toggle + Carousel -->
     <script>
+        // Mobile menu
+        document.querySelector('.burger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Simple testimonial carousel
         const slides = document.querySelectorAll('.testimonial-slide');
-        let current = 0;
+        let idx = 0;
         if (slides.length > 0) {
-            slides[current].classList.add('active');
-            setInterval(() => {
-                slides[current].classList.remove('active');
-                current = (current + 1) % slides.length;
-                slides[current].classList.add('active');
-            }, 8000);
+            const show = () => {
+                slides.forEach(s => s.classList.remove('active'));
+                slides[idx].classList.add('active');
+                idx = (idx + 1) % slides.length;
+            };
+            show();
+            setInterval(show, 8000);
         }
     </script>
 
