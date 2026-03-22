@@ -3,97 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Heather Barile - Jersey Girl's Public Adjusting LLC. Independent licensed NJ Public Adjuster in Vineland. Personal advocacy for insurance claims. Free inspections & consultations.">
+    <meta name="description" content="Heather Barile - Jersey Girl's Public Adjusting LLC. Independent licensed NJ Public Adjuster in Vineland. Personal advocacy for insurance claims. Free inspections. South Jersey families get every dollar they deserve.">
     <title>Jersey Girl's Public Adjusting LLC | Heather Barile • Vineland, NJ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', system_ui, sans-serif; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
         .heading { font-family: 'Playfair Display', serif; }
         .hero-bg { background: linear-gradient(rgba(6,95,70,0.85), rgba(6,95,70,0.85)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat; }
-        .step { transition: all 0.3s; }
-        .chat-button { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800">
 
-    <!-- NAVBAR + HERO + TRUST BAR + SERVICES + PROCESS + ABOUT (kept exactly from your latest committed version for continuity) -->
-    <!-- [Full previous sections omitted here for brevity – they remain 100% unchanged in the actual file] -->
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-emerald-800 text-3xl font-bold tracking-tighter heading">Jersey Girl's</span>
+                <span class="text-xs font-medium text-emerald-700 tracking-widest">PUBLIC ADJUSTING LLC</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#services" class="hover:text-emerald-700">Services</a>
+                <a href="#process" class="hover:text-emerald-700">Our Process</a>
+                <a href="#heather" class="hover:text-emerald-700">Meet Heather</a>
+                <a href="#contact" class="hover:text-emerald-700">Contact</a>
+            </div>
+            <a href="tel:8565286726" class="bg-emerald-800 text-white px-7 py-3 rounded-3xl font-semibold flex items-center gap-2 hover:bg-emerald-900 transition">
+                <i class="fas fa-phone"></i> (856) 528-6726
+            </a>
+        </div>
+    </nav>
 
-    <!-- NEW FEATURE #3: APPOINTMENT SCHEDULER -->
-    <section class="py-16 bg-white border-t">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="heading text-5xl mb-6">Book Your Free Consultation with Heather</h2>
-            <p class="text-slate-600 mb-8">Choose a time that works for you — Heather personally reviews every claim.</p>
-            <!-- Replace with your Calendly embed link -->
-            <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR_CALENDLY_LINK?hide_event_type_details=1" style="min-width:320px;height:700px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- HERO -->
+    <section class="hero-bg h-screen flex items-center text-white">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <p class="text-amber-200 uppercase tracking-widest text-sm font-medium mb-4">Independent • Woman-Owned • Vineland, NJ</p>
+            <h1 class="heading text-6xl md:text-7xl leading-none font-bold">Your Personal Advocate.<br>Your Dedicated Fighter.</h1>
+            <p class="mt-8 text-xl max-w-2xl mx-auto">Heather Barile personally handles every claim with the care and determination South Jersey families deserve.</p>
+            <div class="mt-12 flex flex-wrap justify-center gap-6">
+                <a href="#contact" class="bg-white text-emerald-900 px-10 py-5 rounded-3xl text-lg font-semibold hover:bg-amber-50 transition shadow-xl">Free Claim Review</a>
+                <a href="tel:8565286726" class="border-2 border-white px-10 py-5 rounded-3xl text-lg font-semibold hover:bg-white/10 transition">Call Heather Directly</a>
+            </div>
         </div>
     </section>
 
-    <!-- NEW FEATURE #2: MULTI-STEP FREE CLAIM REVIEW FORM -->
-    <section id="contact" class="py-24 bg-stone-100">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="heading text-5xl text-center mb-12">Start Your Free Claim Review</h2>
-            <form id="claimForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="bg-white p-10 rounded-3xl shadow-xl">
-                <!-- Step 1 -->
-                <div id="step1" class="step">
-                    <h3 class="font-semibold text-xl mb-6">Step 1 of 3: Your Info</h3>
-                    <input type="text" name="name" placeholder="Full Name" required class="w-full border rounded-2xl px-6 py-4 mb-4">
-                    <input type="tel" name="phone" placeholder="Phone" required class="w-full border rounded-2xl px-6 py-4 mb-4">
-                    <button type="button" onclick="nextStep(2)" class="w-full bg-emerald-800 text-white py-5 rounded-3xl font-semibold">Continue →</button>
-                </div>
-                <!-- Step 2 -->
-                <div id="step2" class="step hidden">
-                    <h3 class="font-semibold text-xl mb-6">Step 2 of 3: Claim Details</h3>
-                    <select name="claim-type" required class="w-full border rounded-2xl px-6 py-4 mb-4">
-                        <option value="">Type of Damage</option>
-                        <option>Water & Flood</option><option>Fire & Smoke</option><option>Wind & Storm</option>
-                    </select>
-                    <textarea name="message" placeholder="Brief description of damage & date" rows="4" class="w-full border rounded-2xl px-6 py-4"></textarea>
-                    <button type="button" onclick="nextStep(3)" class="w-full bg-emerald-800 text-white py-5 rounded-3xl font-semibold">Continue →</button>
-                </div>
-                <!-- Step 3 -->
-                <div id="step3" class="step hidden">
-                    <h3 class="font-semibold text-xl mb-6">Step 3 of 3: Review & Submit</h3>
-                    <p class="text-sm text-slate-500 mb-6">Heather will contact you within 24 hours for a free in-person inspection.</p>
-                    <button type="submit" class="w-full bg-emerald-800 text-white py-5 rounded-3xl font-semibold">Submit for Free Review →</button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <!-- NEW FEATURE #1: FLOATING AI CHATBOT -->
-    <button onclick="openChatbase()" class="chat-button fixed bottom-8 right-8 bg-emerald-800 text-white w-16 h-16 rounded-3xl shadow-2xl flex items-center justify-center text-3xl hover:bg-emerald-900 transition z-50">
-        <i class="fas fa-comments"></i>
-    </button>
-
-    <!-- FOOTER (unchanged) -->
-
-    <script>
-        // Multi-step form logic
-        function nextStep(step) {
-            document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
-            document.getElementById('step' + step).classList.remove('hidden');
-        }
-
-        // Chatbase AI Chatbot
-        function openChatbase() {
-            // Replace with your real Chatbase script once you have the ID
-            window.open('https://www.chatbase.co/chatbot-iframe/YOUR_CHATBASE_ID', '_blank');
-            // Or use the official embed script below (add this to <body> end if preferred)
-        }
-
-        // Calendly already loaded via script tag above
-        document.documentElement.style.setProperty('--tw-color-primary', '#065f46');
-    </script>
-
-    <!-- Official Chatbase embed script (add your ID here) -->
-    <script>
-        // Paste your full Chatbase embed script from their dashboard here
-        // Example: <script src="https://www.chatbase.co/embed.js" ...></script>
-    </script>
-</body>
-</html>
+    <!-- TRUST BAR -->
+    <div class="bg-white py-7 border-b">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-6 text-center text-sm font-medium text-slate-600">
+            <div>✅ Licensed & Bonded NJ Public Adjuster</div>
+            <div>👩‍💼 Woman-Owned & Independently Operated</div>
+            <div>🔍 Free Home Inspections</div>
+            <div>💰 No Upfront Fees – We Win Together</div>
+            <div>🏠 South Jersey Local Since Day One</div>
+        </
