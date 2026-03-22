@@ -37,7 +37,7 @@
             .nav-links { display: none; flex-direction: column; gap: 1.5rem; background: white; position: absolute; top: 100%; left: 0; right: 0; padding: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
             .nav-links.active { display: flex; }
             .hero-bg { min-height: 70vh; padding-top: 5rem; }
-            .calendly-inline-widget { height: 600px !important; } /* Reduced for mobile */
+            .calendly-inline-widget { height: 600px !important; }
             section { padding: 3rem 1rem; }
         }
         @media (max-width: 480px) {
@@ -232,24 +232,19 @@
         </div>
     </footer>
 
-    <!-- FLOATING CALL BUTTON -->
-    <a href="tel:8565286726" class="fixed bottom-6 right-6 bg-emerald-800 text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-2xl hover:bg-emerald-900 z-50 text-2xl">
-        <i class="fas fa-phone"></i>
-    </a>
-
-    <!-- Chatbase -->
+    <!-- Chatbase Widget -->
     <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="NAZ9TRG3hwywidlXD2UMf";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
 
     <!-- Mobile Menu Toggle + Carousel -->
     <script>
-        // Mobile menu
+        // Mobile menu toggle
         document.querySelector('.burger').addEventListener('click', () => {
             document.querySelector('.nav-links').classList.toggle('active');
         });
 
-        // Simple testimonial carousel
+        // Testimonial carousel auto-rotate
         const slides = document.querySelectorAll('.testimonial-slide');
         let idx = 0;
         if (slides.length > 0) {
